@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+// router index.js はトップページ
+let express = require('express');
+let router = express.Router();
 
-/* GET users listing. */
+// indexはトップページアクセスがあったらスラッシュ
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  // タイトルで’Express’を表示させる
+  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

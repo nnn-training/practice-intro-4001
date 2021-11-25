@@ -3,23 +3,27 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
-var debug = require('debug')('express-study:server');
-var http = require('http');
+// appを読込んで
+let app = require('../app');
+// デバックモジュールがある
+let debug = require('debug')('express-study:server');
+// httpを読込んでサーバを立てている
+let http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
-
-var port = normalizePort(process.env.PORT || '3000');
+// ポートの環境変数があった場合はそれを使って、ない場合は3000にする
+// 今回は環境変数が「process.env.PORT===8000」が入っている
+let port = normalizePort(process.env.PORT || '3000');
+// サーバ起動
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+let server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -34,7 +38,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  let port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -58,7 +62,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
+  let bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
 
@@ -82,8 +86,8 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
+  let addr = server.address();
+  let bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
