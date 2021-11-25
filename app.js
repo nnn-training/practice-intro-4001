@@ -3,38 +3,45 @@
 const debug = require('debug');
 const debugInfo = debug('module:info');
 setInterval(() => {
+  // 標準表示
   debugInfo('some information.');
 }, 1000);
+// エラーの表示
 const debugError = debug('module:error');
 setInterval(() => {
   debugError('some error.');
 }, 1000);
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// いろいなライブラリを読込んで
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var app = express();
+// ルータを読込む
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
 
-// view engine setup
+let app = express();
+
+// テンプレートエンジンにpugを指定して
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// ログを出す設定している
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// アクセスがあったら、ルータに処理を渡す
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
+// ページがなかったら404を返す
 app.use(function(req, res, next) {
   next(createError(404));
 });
