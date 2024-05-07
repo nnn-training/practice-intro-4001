@@ -22,6 +22,22 @@ app.get("/", (c) => {
   `);
 });
 
+app.get("/secret", (c) => {
+  const name = c.req.query("name") ?? "ゲスト";
+  return c.html(html`
+    <!doctype html>
+    <html>
+      <head>
+        <title>Home</title>
+      </head>
+      <body>
+        <h1>秘密のページ</h1>
+        <p>見つけてしまいましたね……</p>
+      </body>
+    </html>
+  `);
+});
+
 const port = 3000;
 console.log(`Server is running on port ${port}`);
 
