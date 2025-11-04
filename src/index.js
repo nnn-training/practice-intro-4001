@@ -22,6 +22,21 @@ app.get("/", (c) => {
   `);
 });
 
+app.get("/secret", (c) => {
+  return c.html(html`
+    <!doctype html>
+    <html>
+      <head>
+        <title>秘密のページ</title>
+      </head>
+      <body>
+        <h1>秘密のページ</h1>
+        <p>見つけてしまいましたね・・・・・</p>
+      </body>
+    </html>
+  `);
+});
+
 const port = 3000;
 console.log(`Server is running on port ${port}`);
 
